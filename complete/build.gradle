@@ -3,9 +3,11 @@ buildscript {
         springBootVersion = '2.0.5.RELEASE'
     }
     repositories {
-        mavenCentral()
-        maven { url "https://repo.spring.io/snapshot" }
-        maven { url "https://repo.spring.io/milestone" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
+//        mavenCentral()
+//        maven { url "https://repo.spring.io/snapshot" }
+//        maven { url "https://repo.spring.io/milestone" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -25,13 +27,19 @@ bootJar {
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/snapshot" }
-    maven { url "https://repo.spring.io/milestone" }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter" }
+
+//    mavenCentral()
+//    maven { url "https://repo.spring.io/snapshot" }
+//    maven { url "https://repo.spring.io/milestone" }
 }
 
 
 dependencies {
+    compile('io.micrometer:micrometer-core')
+    compile('io.micrometer:micrometer-registry-prometheus')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-starter-webflux')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('io.projectreactor:reactor-test')
